@@ -135,23 +135,42 @@ curl -X DELETE http://127.0.0.1:8000/api/tasks/1/ \
 
 ## 🏗 **Project Structure**
 ```
-task_management/
-│── tasks/                   # Task management app
-│   ├── migrations/          # Database migrations
-│   ├── templates/           # HTML templates (if needed)
-│   ├── views.py             # API views
-│   ├── models.py            # Database models
-│   ├── serializers.py       # DRF Serializers
-│   ├── urls.py              # API endpoints
-│   ├── permissions.py       # Custom permissions
-│   ├── admin.py             # Django Admin Config
-│   ├── tests.py             # Unit tests
-│── task_management/         # Project root
-│   ├── settings.py          # Django settings
-│   ├── urls.py              # Main URL routing
-│── manage.py                # Django CLI manager
-│── requirements.txt         # Python dependencies
-│── README.md                # Project Documentation
+Task-Manager/
+├── task_manager/               # Root Django project directory
+│   ├── __init__.py
+│   ├── asgi.py
+│   ├── settings.py             # Project settings
+│   ├── urls.py                 # Root URL configurations
+│   ├── wsgi.py
+│
+├── templates/                  # Global Templates Directory (for all apps)
+│   ├── base.html
+│   ├── task_list.html
+│   ├── task_detail.html
+│
+├── static/                     # Global Static Directory
+│   ├── css/
+│   │   ├── styles.css          # Main CSS file
+│   ├── js/
+│   ├── images/
+│
+├── tasks/                      # Main Django app
+│   ├── migrations/             # Database migrations
+│   │   └── __init__.py
+│   ├── __init__.py
+│   ├── admin.py                # Django Admin configurations
+│   ├── apps.py                 # Django App configuration
+│   ├── models.py               # Database models
+│   ├── serializers.py          # Serializers for Django REST framework
+│   ├── tests.py                # Test cases
+│   ├── urls.py                 # Application-specific URL routing
+│   ├── views.py                # View functions for the app
+│
+├── db.sqlite3                  # SQLite database file
+├── manage.py                   # Django's CLI management script
+├── requirements.txt            # List of dependencies
+└── README.md                   # Project documentation
+
 ```
 
 ## ✨ **Contributing**
