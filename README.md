@@ -89,6 +89,16 @@ Authorization: Token abcdef1234567890
 
 ---
 
+## Screenshots
+
+### Home Page
+![Home Page](screenshots/homepage.png)
+
+### Task List
+![Task List](screenshots/tasklist.png)
+
+---
+
 ## 🔥 **Sample API Requests**
 Here are some sample API requests using **cURL** and **Postman**.
 
