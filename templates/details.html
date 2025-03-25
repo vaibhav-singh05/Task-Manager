@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Task List
+{% endblock %}
+
+{% block content %}
+    <h2>Task List</h2>
+
+    <!-- Search Box -->
+    <form method="GET" action="{% url 'details' %}" class="mb-3">
+        <input type="text" name="search" placeholder="Enter username" value="{{ search_query }}" class="form-control" style="width: 300px; display: inline-block;">
+        <button type="submit" class="btn btn-primary">Search</button>
+        <a href="{% url 'details' %}?clear=1" class="btn btn-secondary">Clear</a>
+    </form>
+
+    <!-- Task Table -->
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Assigned Users</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for task in tasks %}
+            <tr>
+                <td>{{ task.id }}</td>
+                <td>{{ task.name }}</td>
+                <td>{{ task.description }}</td>
+                <td>
+                    {% for user in task.assigned_users.all %}
+                        {{ user.username }}{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                </td>
+                <td>{{ task.status }}</td>
+                <td>
+                    <form action="{% url 'delete_task' task.id %}" method="POST" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="6" class="text-center">No tasks found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
