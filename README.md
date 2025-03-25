@@ -76,6 +76,10 @@ Include the token in the request **headers**:
 ```
 Authorization: Token abcdef1234567890
 ```
+---
+
+## 🚀 Live API Link  
+The API is deployed at: [https://task-manager-a4jc.onrender.com](https://task-manager-a4jc.onrender.com)
 
 ---
 
