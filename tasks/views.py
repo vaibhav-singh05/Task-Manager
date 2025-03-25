@@ -3,7 +3,8 @@ from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated  
 from django.contrib.auth.models import User  
 from .models import Task  
-from .serializers import TaskSerializer, UserSerializer  
+from .serializers import TaskSerializer, UserSerializer
+from django.http import JsonResponse
 
 # API ViewSet for managing tasks
 class TaskViewSet(viewsets.ModelViewSet):
@@ -66,3 +67,16 @@ def details(request):
         tasks = Task.objects.filter(assigned_users__username__icontains=search_query) if search_query else Task.objects.all()
 
     return render(request, 'details.html', {'tasks': tasks, 'search_query': search_query})
+
+# View to update task status
+def update_task_status(request, task_id):
+    if request.method == "POST":
+        task = get_object_or_404(Task, id=task_id)
+        new_status = request.POST.get("status")
+
+        if new_status:
+            task.status = new_status
+            task.save()
+            return JsonResponse({"success": True, "status": task.status})  # JSON response
+        return JsonResponse({"success": False, "error": "Invalid status"})
+    return JsonResponse({"success": False, "error": "Invalid request"})

@@ -10,7 +10,7 @@ class Task(models.Model):
     # Task status with choices
     status = models.CharField(
         max_length=20, 
-        choices=[('pending', 'Pending'), ('completed', 'Completed')], 
+        choices=[('Pending', 'Pending'),('In Progress', 'In Progress'),('Completed', 'Completed'),], 
         default='pending'
     )  
     # Many-to-Many relation: A task can be assigned to multiple users

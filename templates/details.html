@@ -37,7 +37,13 @@
                         {{ user.username }}{% if not forloop.last %}, {% endif %}
                     {% endfor %}
                 </td>
-                <td>{{ task.status }}</td>
+                <td>
+                    <select class="status-dropdown" data-task-id="{{ task.id }}">
+                        <option value="Pending" {% if task.status == "Pending" %}selected{% endif %}>Pending</option>
+                        <option value="In Progress" {% if task.status == "In Progress" %}selected{% endif %}>In Progress</option>
+                        <option value="Completed" {% if task.status == "Completed" %}selected{% endif %}>Completed</option>
+                    </select>
+                </td>
                 <td>
                     <form action="{% url 'delete_task' task.id %}" method="POST" style="display:inline;">
                         {% csrf_token %}
@@ -52,4 +58,34 @@
             {% endfor %}
         </tbody>
     </table>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".status-dropdown").change(function(){
+                var taskId = $(this).data("task-id");
+                var newStatus = $(this).val();
+                var csrfToken = "{{ csrf_token }}";  // ✅ Ensure CSRF token is passed
+                
+                $.ajax({
+                    url: "/task/" + taskId + "/update_status/",
+                    type: "POST",
+                    data: {
+                        "status": newStatus,
+                        "csrfmiddlewaretoken": csrfToken
+                    },
+                    success: function(response){
+                        if(response.success) {
+                            alert("Status updated successfully: " + response.status);
+                        } else {
+                            alert("Failed to update: " + response.error);
+                        }
+                    },
+                    error: function(xhr, status, error){
+                        alert("Error: " + xhr.responseText);  // ✅ Debug error response
+                    }
+                });
+            });
+        });
+    </script>
 {% endblock %}
