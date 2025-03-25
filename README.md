@@ -1,7 +1,15 @@
-# Task Manager
- Task Manager - Django Project The Task Manager is a Django-based web application designed to help users efficiently manage their tasks. It allows users to create, assign, track, and delete tasks, making it an ideal solution for both personal task management and team collaboration. <br>
-✅ Task Creation & Assignment – Users can create tasks and assign them to multiple team members. <br>
-✅ Task Status Tracking – Tasks can be marked as Pending or Completed. <br>
-✅ Search & Filtering – Easily find tasks based on keywords or assigned users. <br>
-✅ REST API Integration – Provides API endpoints using Django REST Framework (DRF) for external integrations. <br>
-✅ Responsive UI – A clean and user-friendly interface for task management. <br>
+# Task Management API (Django & DRF)
+
+This Django REST Framework-based API allows users to create tasks, assign tasks to users, and retrieve assigned tasks.
+
+## Features
+✅ Create, Read, Update, and Delete (CRUD) tasks.  
+✅ Assign tasks to multiple users.  
+✅ Retrieve tasks assigned to a specific user.  
+✅ Secure API with Token Authentication.  
+
+## Installation
+1. Clone the repository:
+   ```sh
+   git clone <your_repo_url>
+   cd task_management
