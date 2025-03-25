@@ -145,8 +145,8 @@ Task-Manager/
 │
 ├── templates/                  # Global Templates Directory (for all apps)
 │   ├── base.html
-│   ├── task_list.html
-│   ├── task_detail.html
+│   ├── tasks.html
+│   ├── details.html
 │
 ├── static/                     # Global Static Directory
 │   ├── css/
